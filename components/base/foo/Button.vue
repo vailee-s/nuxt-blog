@@ -1,6 +1,7 @@
 <template>
     <div>
-这是一个按钮组件
+<NuxtLink class="m-6" to="hello">去 hello</NuxtLink>
+<NuxtLink to="counter">去 counter</NuxtLink>
     </div>
 </template>
 

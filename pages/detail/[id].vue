@@ -16,7 +16,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useLogin } from '~/composable/user';
+// import { useLogin } from '~/composable/user';
+import { useUser } from '~/store/user';
 
 const router = useRouter();
 const route = useRoute()
@@ -25,7 +26,10 @@ const { data, pending } = await useAsyncData(fetchPost);
 
 // 增加评论相关逻辑，注意登录状态的获取和使用
 const value = useState("comment", () => "");
-const isLogin = useLogin()
+// const isLogin = useLogin()
+
+const store = useUser();
+const { isLogin } = storeToRefs(store)
 const toast = useToast()
 const onSubmit = () => {
   if (isLogin.value) {
