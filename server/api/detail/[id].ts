@@ -8,8 +8,8 @@ import html from 'remark-html';
 const postsDir = path.join(process.cwd(), "content");
 
 export default defineEventHandler(async(event) => {
-    
-    const fileName = getRouterParam(event, 'id')+'.md';
+    try {
+            const fileName = getRouterParam(event, 'id')+'.md';
 
     // 获取文章内容
     const fullPath = path.join(postsDir, fileName);
@@ -25,4 +25,11 @@ export default defineEventHandler(async(event) => {
         title: matterInfo.data.title as string,
         contentHtml,
     }
+    } catch (error) {
+        throw createError({
+            statusCode: 404,
+            message: 'Not found'
+        });
+    }
+
 })
